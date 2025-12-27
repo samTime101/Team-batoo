@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bato</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+
+    <!-- STYLES HARU -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- GLOBAL KO -->
+    <link rel="stylesheet" href="css/global.css">
+</head>
+
+<body>
+    <!-- DIVS HARU -->
+    <div id="reg-overlay">
+        <div class="login-box">
+            <h2>Batoo Login</h2>
+            <label>Select Your Role</label>
+            <select id="role-select">
+                <option value="normal">Normal User (Guest)</option>
+                <option value="ambulance">Ambulance Service</option>
+                <option value="delivery">Delivery Partner</option>
+                <option value="vendor">Street Vendor</option>
+            </select>
+
+            <label>Identification ID</label>
+            <input type="text" id="user-id" placeholder="e.g. AMB-01 or DEL-99" value="GUEST-01">
+
+            <button class="btn-primary" onclick="login()">Connect to Network</button>
+            <button class="btn-primary btn-ghost" onclick="useGuestMode()">Continue as Viewer</button>
+        </div>
+    </div>
+
+    <div id="app-container">
+        <aside id="sidebar">
+            <div class="sidebar-header">
+                <h3><span class="live-dot"></span> Live Network</h3>
+                <small style="color:#64748b">Real-time active nodes</small>
+            </div>
+            <div id="user-list">
+            </div>
+            <div style="padding: 20px;">
+                <button class="btn-primary" style="background:#334155; font-size:0.8rem"
+                    onclick="location.reload()">Logout</button>
+            </div>
+        </aside>
+
+        <div id="map-wrapper">
+            <div class="top-bar">
+                <div class="top-left">
+                    <button class="sim-btn ghost" id="sidebar-toggle" type="button"
+                        aria-label="Toggle live network list">☰ Live Nodes</button>
+                    <div class="status-pill">
+                        <span id="my-role-icon">👤</span>
+                        <strong id="my-role-text">Guest Mode</strong>
+                    </div>
+                </div>
+                <button class="sim-btn" onclick="simulateMovement()">Go Forward ➡</button>
+            </div>
+
+            <div id="map"></div>
+
+            <div id="info-panel" class="info-panel">
+                <h4 id="info-title">Route Info</h4>
+                <div id="info-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- MAIN JS -->
+    <script src="./js/index.js"></script>
+</body>
+
+</html>
